@@ -3,9 +3,43 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#07C160">
+<meta name="theme-color" content="green">
 <title>Toconou</title>
-<link rel="stylesheet" href="app.css">
+<style>
+:root{
+  --wechat: mediumseagreen;
+  --fond: whitesmoke;
+  --carte: white;
+  --texte: black;
+  --gris: lightgray;
+  --rouge: red;
+}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
+body{background:var(--fond);padding-bottom:80px;color:var(--texte)}
+.topbar{background:var(--wechat);color:var(--carte);padding:16px;text-align:center;font-weight:bold;font-size:19px}
+.card{background:var(--carte);margin:12px;padding:18px;border-radius:16px}
+select,input,textarea{width:100%;padding:14px;margin-bottom:10px;border:1px solid var(--gris);border-radius:10px;background:var(--fond)}
+button{width:100%;padding:13px;border:none;border-radius:10px;font-weight:bold;margin-bottom:8px}
+#btnCreer{background:var(--wechat);color:var(--carte)}
+#btnLogin{background:var(--texte);color:var(--carte)}
+#btnOublieSide{color:var(--wechat);font-size:12px}
+.tabs{position:fixed;bottom:0;left:0;right:0;background:var(--carte);display:flex;justify-content:space-around;border-top:1px solid var(--gris);padding:8px 0}
+.tabs button{background:none;width:auto;font-size:11px;color:gray}
+.section{display:none}
+.section.active{display:block}
+.badge{padding:3px 8px;border-radius:10px;font-size:10px}
+.badge-non{background:var(--rouge);color:var(--carte)}
+.progress{height:12px;background:var(--gris);border-radius:6px;overflow:hidden}
+.progress div{height:100%;background:var(--wechat);width:0%}
+#murChat{background:var(--fond);padding:6px;max-height:120px;overflow:auto}
+#previewRec{width:100%;display:none;height:180px}
+#legoGrid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:6px}
+#miniAppContainer{display:none;background:var(--carte);border:2px solid var(--wechat);height:300px;overflow:auto}
+.video-full{height:80vh;background:black;position:relative;display:flex;align-items:center;justify-content:center;border-radius:16px;overflow:hidden;margin-top:10px}
+.video-full video{width:100%;height:100%;object-fit:cover}
+.side-123{position:absolute;right:10px;bottom:20px;display:flex;flex-direction:column;gap:15px;color:white;text-align:center}
+.side-123 div{background:dimgray;padding:8px;border-radius:20px;font-size:12px}
+</style>
 <script src="https://cdn.fedapay.com/checkout.js"></script>
 </head>
 <body>
@@ -28,11 +62,13 @@
 <div class="card"><select id="postType"><option value="PERSONNEL">Perso</option><option value="PAGE">Page</option></select><textarea id="postText" placeholder="Exprimez-vous..."></textarea><input type="file" id="postPhoto" multiple accept="image/*,video/*"><div style="display:grid;grid-template-columns:1fr 1fr;gap:6px"><button id="btnRecVideo">Vidéo</button><button id="btnStopRec" style="display:none">Arrêter</button></div><video id="previewRec" controls></video><div style="font-size:10px"><span id="countText">0</span> | <span id="countPhotos">0</span> | <span id="countVideo">0</span></div><button id="btnPost">Publier</button><button id="btnAIDesc">Aide</button><div id="mur"></div></div>
 </div>
 <div id="secContacts" class="section"><div class="card"><h3>Compte</h3><span id="visiText" class="badge badge-non">Non vérifié</span> <span id="monetText" class="badge badge-non">Non monétisé</span><div><span id="progressText">0%</span><div class="progress"><div id="progressBar"></div></div></div><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px"><button id="mGauche">Gauche</button><button id="mDroite">Droite</button><button id="mHaut">Haut</button><button id="mBas">Bas</button><button id="mCligne">Cligner</button><button id="mBouche">Bouche</button></div><button id="btnVerifPro">Vérifier</button><div><span id="boosterInfo">x1</span> <button id="btnBooster">Booster 1000F</button></div></div><div class="card"><button id="btnLogout">Déconnexion</button><button id="btnSupprimer">Supprimer compte</button></div></div>
-<div id="secDecouverte" class="section"><div class="card"><h3>Mini-apps</h3><input id="legoNom" placeholder="Nom"><input id="legoEmoji" placeholder="Emoji"><select id="legoType"><option>E-com</option><option>Pay</option><option>Food</option><option>Mode</option></select><button id="btnLegoCreer">Créer</button><div id="legoGrid"></div><div id="miniAppContainer"><button id="btnFermerMini">Fermer</button><div id="miniAppContent"></div></div></div></div>
+<div id="secDecouverte" class="section"><div class="card"><h3>Mini-apps</h3><input id="legoNom" placeholder="Nom"><input id="legoEmoji" placeholder="Emoji"><select id="legoType"><option>E-com</option><option>Pay</option><option>Food</option><option>Mode</option></select><button id="btnLegoCreer">Créer</button><div id="legoGrid"></div>
+<div class="video-full"><video controls></video><div class="side-123"><div>❤️<br>1</div><div>💬<br>2</div><div>↗️<br>3</div></div></div>
+<div id="miniAppContainer"><button id="btnFermerMini">Fermer</button><div id="miniAppContent"></div></div></div></div>
 <div id="secMarket" class="section"><div class="card"><h3>Boutique</h3><input id="prodNom" placeholder="Produit"><input id="prodCategorie" placeholder="Catégorie"><input id="prodDomaine" placeholder="Domaine"><input id="prodPrix" type="number" placeholder="Prix"><input id="prodStock" type="number" placeholder="Stock"><select id="prodPays"><option>Bénin 5%</option><option>Niger 8%</option><option>Mali 12%</option><option>Burkina 15%</option><option>Autre 22%</option></select><button id="btnProd">Ajouter produit</button><div id="panierBox">Panier vide</div><span id="panierCount">0</span><button id="btnCommander">Payer</button><div id="suiviBox">Aucune commande</div><button id="btnEnvoyerColis">Expédié</button><button id="btnRecuColis">Reçu</button><button id="btnDebloquer">Facture</button><div id="factureBox"></div><input id="affilieCode" placeholder="Code parrain"><button id="btnAffilie">Parrainage</button><span id="affilieGain">0</span><button id="btnWorkflow">Automatique</button><div id="murCommande"></div></div></div>
 <div id="secMoi" class="section"><div class="card"><input id="docTitre" placeholder="Document"><button id="btnDoc">Ajouter</button><button id="btnHistClient">Achats</button><button id="btnHistVendeur">Ventes</button><div id="histBox">Vide</div></div></div>
 <div class="tabs"><button id="tabChat">Messages</button><button id="tabContacts">Contacts</button><button id="tabDecouverte">Découvrir</button><button id="tabMarket">Boutique</button><button id="tabMoi">Moi</button></div>
 </div>
 <script type="module" src="app.js"></script>
 </body>
-                                                                                                                             </html>
+</html>
