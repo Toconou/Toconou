@@ -1,3 +1,4 @@
+/* COULEURS */
 :root{
   --wechat: green;
   --fond: whitesmoke;
@@ -7,21 +8,122 @@
   --rouge: red;
 }
 
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial;font-weight:400}
-body{background:var(--fond);padding-bottom:80px;color:var(--texte)}
-.card{background:var(--carte);margin:6px;padding:12px;border-radius:12px}
-button,input,select,textarea{width:100%;padding:10px;margin:4px 0;border-radius:8px;border:1px solid var(--gris);font-weight:400}
-button{border:none;cursor:pointer}
-button:active{opacity:0.8}
-.tabs{position:fixed;bottom:0;left:0;right:0;background:var(--carte);display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;border-top:2px solid var(--wechat)}
-.section{display:none}.section.active{display:block}
-.badge{padding:3px 8px;border-radius:10px;font-size:10px}
-.badge-non{background:var(--rouge);color:var(--carte)}
-.badge-ok{background:var(--wechat);color:var(--carte)}
-.progress{height:12px;background:var(--gris);border-radius:6px;overflow:hidden}
-.progress div{height:100%;background:var(--wechat);width:0%}
-.topbar{background:var(--wechat);color:var(--carte);padding:12px;text-align:center}
-#murChat{background:var(--fond);padding:6px;max-height:120px;overflow:auto}
-#previewRec{width:100%;display:none;height:180px}
-#legoGrid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:6px}
-#miniAppContainer{display:none;background:var(--carte);border:2px solid var(--wechat);height:300px;overflow:auto}
+/* BASE */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial;
+  font-weight:400
+}
+body{
+  background:var(--fond);
+  padding-bottom:80px;
+  color:var(--texte)
+}
+
+/* TOPBAR */
+.topbar{
+  background:var(--wechat);
+  color:var(--carte);
+  padding:12px;
+  text-align:center
+}
+
+/* CARTES */
+.card{
+  background:var(--carte);
+  margin:6px;
+  padding:12px;
+  border-radius:12px
+}
+
+/* FORMULAIRES */
+button,input,select,textarea{
+  width:100%;
+  padding:10px;
+  margin:4px 0;
+  border-radius:8px;
+  border:1px solid var(--gris);
+  font-weight:400
+}
+button{
+  border:none;
+  cursor:pointer
+}
+button:active{
+  opacity:0.8
+}
+
+/* NAVIGATION BAS */
+.tabs{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  background:var(--carte);
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr 1fr 1fr;
+  border-top:2px solid var(--wechat)
+}
+
+/* SECTIONS */
+.section{
+  display:none
+}
+.section.active{
+  display:block
+}
+
+/* BADGES */
+.badge{
+  padding:3px 8px;
+  border-radius:10px;
+  font-size:10px
+}
+.badge-non{
+  background:var(--rouge);
+  color:var(--carte)
+}
+.badge-ok{
+  background:var(--wechat);
+  color:var(--carte)
+}
+
+/* PROGRESSION */
+.progress{
+  height:12px;
+  background:var(--gris);
+  border-radius:6px;
+  overflow:hidden
+}
+.progress div{
+  height:100%;
+  background:var(--wechat);
+  width:0%
+}
+
+/* CHAT ET GRILLES */
+#murChat{
+  background:var(--fond);
+  padding:6px;
+  max-height:120px;
+  overflow:auto
+}
+#previewRec{
+  width:100%;
+  display:none;
+  height:180px
+}
+#legoGrid{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr 1fr;
+  gap:6px
+}
+#miniAppContainer{
+  display:none;
+  background:var(--carte);
+  border:2px solid var(--wechat);
+  height:300px;
+  overflow:auto
+  }
