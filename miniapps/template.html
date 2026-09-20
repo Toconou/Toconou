@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html><body style="font-family:sans-serif;text-align:center;padding:20px">
+<h1 id="t"></h1>
+<button style="background:#07C160;color:white;padding:12px;border:none;border-radius:10px;width:100%">Payer</button>
+<script>
+let p=new URLSearchParams(location.search);
+document.getElementById('t').innerText=(p.get('emoji')||'📦')+' '+(p.get('nom')||'Mini-App');
+</script>
+</body></html>
