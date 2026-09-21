@@ -6,4 +6,11 @@
 let p=new URLSearchParams(location.search);
 document.getElementById('t').innerText=(p.get('emoji')||'📦')+' '+(p.get('nom')||'Mini-App');
 </script>
-</body></html>
+
+<script>
+if('serviceWorker' in navigator){
+  navigator.serviceWorker.register('./sw.js');
+}
+</script>
+</body>
+</html>
