@@ -1,4 +1,4 @@
-/* COULEURS */
+/* ===== COULEURS ===== */
 :root{
   --wechat: green;
   --fond: whitesmoke;
@@ -8,54 +8,54 @@
   --rouge: red;
 }
 
-/* BASE */
+/* ===== BASE ===== */
 *{
   margin:0;
   padding:0;
   box-sizing:border-box;
   font-family:Arial;
-  font-weight:400
+  font-weight:400;
 }
 body{
   background:var(--fond);
   padding-bottom:80px;
-  color:var(--texte)
+  color:var(--texte);
 }
 
-/* TOPBAR */
+/* ===== TOPBAR ===== */
 .topbar{
   background:var(--wechat);
   color:var(--carte);
   padding:12px;
-  text-align:center
+  text-align:center;
 }
 
-/* CARTES */
+/* ===== CARTES ===== */
 .card{
   background:var(--carte);
   margin:6px;
   padding:12px;
-  border-radius:12px
+  border-radius:12px;
 }
 
-/* FORMULAIRES */
+/* ===== FORMULAIRES ===== */
 button,input,select,textarea{
   width:100%;
   padding:10px;
   margin:4px 0;
   border-radius:8px;
   border:1px solid var(--gris);
-  font-weight:400
+  font-weight:400;
 }
 button{
   border:none;
-  cursor:pointer
+  cursor:pointer;
 }
 button:active{
-  opacity:0.8
+  opacity:0.8;
 }
 
-/* NAVIGATION BAS */
+/* ===== NAVIGATION BAS ===== */
 .tabs{
   position:fixed;
   bottom:0;
@@ -64,66 +64,67 @@ button:active{
   background:var(--carte);
   display:grid;
   grid-template-columns:1fr 1fr 1fr 1fr 1fr;
-  border-top:2px solid var(--wechat)
+  border-top:2px solid var(--wechat);
 }
 
-/* SECTIONS */
+/* ===== SECTIONS ===== */
 .section{
-  display:none
+  display:none;
 }
 .section.active{
-  display:block
+  display:block;
 }
 
-/* BADGES */
+/* ===== BADGES ===== */
 .badge{
   padding:3px 8px;
   border-radius:10px;
-  font-size:10px
+  font-size:10px;
 }
 .badge-non{
   background:var(--rouge);
-  color:var(--carte)
+  color:var(--carte);
 }
 .badge-ok{
   background:var(--wechat);
-  color:var(--carte)
+  color:var(--carte);
 }
 
-/* PROGRESSION */
+/* ===== PROGRESSION ===== */
 .progress{
   height:12px;
   background:var(--gris);
   border-radius:6px;
-  overflow:hidden
+  overflow:hidden;
 }
 .progress div{
   height:100%;
   background:var(--wechat);
-  width:0%
+  width:0%;
 }
 
-/* CHAT ET GRILLES */
+/* ===== CHAT ET GRILLES ===== */
 #murChat{
   background:var(--fond);
   padding:6px;
   max-height:120px;
-  overflow:auto
+  overflow:auto;
 }
 #previewRec{
   width:100%;
   display:none;
-  height:180px
+  height:180px;
 }
 #legoGrid{
   display:grid;
   grid-template-columns:1fr 1fr 1fr 1fr;
-  gap:6px
+  gap:6px;
 }
 #miniAppContainer{
   display:none;
   background:var(--carte);
   border:2px solid var(--wechat);
   height:300px;
-  overflow:auto
-  }
+  overflow:auto;
+}
+```
