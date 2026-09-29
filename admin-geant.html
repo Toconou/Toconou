@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Admin Géant Toconou</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body{font-family:Arial;background:#111;color:#fff;padding:20px}
+h1{color:#00ff88}
+p{background:#222;padding:10px;border-radius:8px}
+button{background:red;color:#fff;border:none;padding:5px 10px;border-radius:5px;cursor:pointer}
+button:hover{background:darkred}
+</style>
+</head>
+<body>
+<h1>TOCONOU - ADMIN GÉANT</h1>
+<p id="status">Vérification...</p>
+<div id="liste"></div>
+
+<script type="module">
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
+
+const supabase = createClient(
+  'https://wshpyuvzllzekuelcgpr.supabase.co',
+  'sb_publishable_w15TA0NjO2wElrnSz5Dp8Q_oRGsiFS_'
+);
+
+async function chargerAdmin() {
+  const { data: { user } } = await supabase.auth.getUser();
+  
+  if (!user || user.email !== 'favibaudouin56@gmail.com') {
+    document.getElementById('status').innerHTML = 'Pas autorisé! Redirection...';
+    setTimeout(()=>{ window.location.href = 'index.html'; }, 2000);
+    return;
+  }
+
+  document.getElementById('status').innerHTML = 'Connecté Admin: ' + user.email;
+
+  const { data, error } = await supabase.from('profiles').select('*');
+  
+  if (error) {
+    document.getElementById('liste').innerHTML = 'Erreur: ' + error.message;
+  } else {
+    let html = '';
+    data.forEach(p => {
+      html += `<p>${p.nom || 'Sans nom'} - ${p.email} - ${p.role || 'user'} 
+      <button onclick="bloquer('${p.id}')">Bloquer</button></p>`;
+    });
+    document.getElementById('liste').innerHTML = html;
+  }
+}
+
+window.bloquer = async (id) => {
+  const { error } = await supabase.from('profiles').update({ est_bloque: true }).eq('id', id);
+  if(error) alert(error.message); else { alert('Bloqué!'); chargerAdmin(); }
+}
+
+chargerAdmin();
+</script>
+</body>
+</html>
